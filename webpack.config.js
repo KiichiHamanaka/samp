@@ -26,9 +26,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     output: {
-        filename: '[name].[chunkhash].js',
-        chunkFilename: '[name].[chunkhash].js',
-        path: path.resolve(__dirname, 'dist')
+        filename: 'main.js',
     },
     devServer: {
         historyApiFallback: true,
