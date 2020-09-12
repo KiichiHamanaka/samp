@@ -28,14 +28,6 @@ window.onload = () => {
 		};
 	});
 
-    /*
-    beatbox.querySelectorAll('div').forEach(div=>{
-        div.onclick = e => {
-            sound(e.currentTarget.dataset.note)
-        };
-    });
-    */
-
     document.onkeypress = e => {
         if (e.code === 'KeyD') {
             sound('C1');
