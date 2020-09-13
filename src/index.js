@@ -4,10 +4,10 @@ import * as Tone from "tone";
 window.onload = () => {
 
     const sampler = new Tone.Sampler({
-        'C1': '/samp/assets/kick.wav',
-        'E1': '/samp/assets/close.wav',
-        'F#1': '/samp/assets/open.wav',
-        'F1': '/samp/assets/snare.wav'
+        'C1': '/samp/assets/sounds/kick.wav',
+        'E1': '/samp/assets/sounds/close.wav',
+        'F#1': '/samp/assets/sounds/open.wav',
+        'F1': '/samp/assets/sounds/snare.wav'
     }, () => {
         console.log('initialized')
     }).toDestination();
