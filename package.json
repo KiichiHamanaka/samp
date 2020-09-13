@@ -17,7 +17,7 @@
     "webpack-cli": "^3.3.12"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Run Testing!!!\"",
     "build": "webpack"
   },
   "keywords": [],
