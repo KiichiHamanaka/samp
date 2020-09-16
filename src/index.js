@@ -1,19 +1,42 @@
-//create a synth and connect it to the main output (your speakers)
 import * as Tone from "tone";
 
+let sounds = ['/assets/sounds/kick.wav',
+              '/assets/sounds/close.wav',
+              '/assets/sounds/open.wav',
+              '/assets/sounds/snare.wav'];
+
 window.onload = () => {
-
+    //サンプラ初期化
     const sampler = new Tone.Sampler({
-        'C1': '/samp/assets/sounds/kick.wav',
-        'E1': '/samp/assets/sounds/close.wav',
-        'F#1': '/samp/assets/sounds/open.wav',
-        'F1': '/samp/assets/sounds/snare.wav'
-    }, () => {
-        console.log('initialized')
+        'C1': sounds[0],
+        'E1': sounds[1],
+        'F#1': sounds[2],
+        'F1': sounds[3]
     }).toDestination();
+    
+    let volume = 0;
+    sampler.volume.value = volume;
+    console.log("サンプラー内容確認");
+    console.log(sampler);
+    console.log(sampler);
+    console.log(sampler.samples)
+    console.log(sampler.samples.C1)
+    console.log(sampler.C1);
 
-    //play a middle 'C' for the duration of an 8th note
-    const sound = note => {
+
+    //ファイル変更時処理
+    const sound = document.getElementById('sound1');
+    sound.onchange = () =>{
+        const file = sound.files[0]
+        sounds[0] = file;
+        console.log(file);
+        console.log(sound.files[0]);   
+        console.log(sampler);     
+        console.log(sampler.samples);     
+    }
+
+    //音声再生,アニメーション適用
+    const play = note => {
         const cell = document.querySelector('[data-note="' + note + '"]');
         sampler.triggerAttackRelease(note, .3);
         cell.style.animationName = 'fade';
@@ -21,25 +44,27 @@ window.onload = () => {
             cell.style.animationName = '';
         }, 300)
     }
+    //クリック時再生処理
     const beatbox = document.getElementById('buttons');
     beatbox.querySelectorAll('div').forEach(div=>{
 		div.onclick = e => {
-			sound(e.currentTarget.dataset.note)
+			play(e.currentTarget.dataset.note)
 		};
 	});
 
+    //キーボード押下時処理
     document.onkeypress = e => {
         if (e.code === 'KeyD') {
-            sound('C1');
-            console.log("Kick");
+            play('C1');
+            console.log(sounds[0]);
         } else if (e.code === 'KeyF') {
-            sound('E1');
+            play('E1');
             console.log("close");
         } else if (e.code === 'KeyJ') {
-            sound('F#1')
+            play('F#1')
             console.log("open");
         } else if (e.code === 'KeyK') {
-            sound('F1')
+            play('F1')
             console.log("snare");
         }
     }
