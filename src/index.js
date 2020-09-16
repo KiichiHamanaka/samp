@@ -8,20 +8,19 @@ let sounds = ['/assets/sounds/kick.wav',
 window.onload = () => {
     //サンプラ初期化
     const sampler = new Tone.Sampler({
-        'C1': sounds[0],
-        'E1': sounds[1],
-        'F#1': sounds[2],
-        'F1': sounds[3]
-    }).toDestination();
+        urls: {
+            'C1': sounds[0],
+            'E1': sounds[1],
+            'F#1': sounds[2],
+            'F1': sounds[3]
+        },}).toDestination();
     
     let volume = 0;
     sampler.volume.value = volume;
     console.log("サンプラー内容確認");
     console.log(sampler);
-    console.log(sampler);
-    console.log(sampler.samples)
-    console.log(sampler.samples.C1)
-    console.log(sampler.C1);
+    console.log(sampler.urls)
+
 
 
     //ファイル変更時処理
@@ -32,7 +31,8 @@ window.onload = () => {
         console.log(file);
         console.log(sound.files[0]);   
         console.log(sampler);     
-        console.log(sampler.samples);     
+        console.log(sampler.samples);
+        console.log(sampler.urls); 
     }
 
     //音声再生,アニメーション適用
@@ -57,6 +57,8 @@ window.onload = () => {
         if (e.code === 'KeyD') {
             play('C1');
             console.log(sounds[0]);
+            console.log(sampler);
+            console.log(sampler.urls);
         } else if (e.code === 'KeyF') {
             play('E1');
             console.log("close");
